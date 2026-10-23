@@ -22,6 +22,7 @@
   <script src="app.js" defer></script>
   <script src="rituel.js" defer></script>
   <script src="commande-mine.js" defer></script>
+  <script src="contributions.js" defer></script>
 </head>
 
 <body>
@@ -75,6 +76,14 @@
       >
         Rituel du bureau
       </button>
+
+        <button
+        type="button"
+        data-page="contributions"
+      >
+        Qui ramène quoi ?
+       </button>
+
     </nav>
 
     <select
@@ -491,7 +500,87 @@
       ></div>
     </section>
 
+        <!-- =================================================
+         PAGE : QUI RAMÈNE QUOI ?
+         ================================================= -->
 
+    <section id="contributions" class="page hidden">
+      <div class="eyebrow">
+        Opération croissants
+      </div>
+
+      <h1>Qui ramène quoi ?</h1>
+
+      <p>
+        Quatre jus d’orange, zéro croissant ?
+        On peut faire mieux.
+      </p>
+
+      <div class="card">
+        <div class="apports-commandes">
+          <label for="apports-date">
+            Date du rendez-vous
+
+            <input
+              type="date"
+              id="apports-date"
+            >
+          </label>
+
+          <button
+            type="button"
+            id="apports-actualiser"
+            class="outline"
+          >
+            Actualiser
+          </button>
+        </div>
+
+        <p id="apports-message" role="status"></p>
+
+        <h2>Ma contribution</h2>
+
+        <p id="apports-identite" class="sub"></p>
+
+        <label for="apports-texte">
+          Qu’est-ce que tu apportes ?
+        </label>
+
+        <textarea
+          id="apports-texte"
+          rows="3"
+          maxlength="300"
+          placeholder="Ex. : 8 croissants et une bouteille de jus."
+        ></textarea>
+
+        <div class="actionrow">
+          <button
+            type="button"
+            id="apports-enregistrer"
+            class="primary"
+            disabled
+          >
+            Enregistrer ma contribution
+          </button>
+
+          <button
+            type="button"
+            id="apports-supprimer"
+            class="outline"
+            disabled
+          >
+            Retirer ma contribution
+          </button>
+        </div>
+      </div>
+
+      <h2 class="apports-titre">
+        Ce qui est déjà prévu
+      </h2>
+
+      <div id="apports-liste" class="card"></div>
+    </section>
+    
     <!-- =================================================
          PAGE : RÉGLAGES
          ================================================= -->

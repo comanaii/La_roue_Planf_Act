@@ -1006,3 +1006,85 @@ footer {
     flex: 1 1 100%;
   }
 }
+/* =====================================================
+   QUI RAMÈNE QUOI ?
+   ===================================================== */
+
+.apports-commandes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+
+  margin-bottom: 20px;
+}
+
+.apports-commandes label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  font-weight: 600;
+}
+
+.apports-commandes input {
+  width: 220px;
+  margin: 0;
+}
+
+#apports-texte {
+  display: block;
+
+  width: 100%;
+  margin: 10px 0 16px;
+  padding: 14px;
+
+  background: var(--paper);
+  color: var(--ink);
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  font: inherit;
+  line-height: 1.6;
+
+  resize: vertical;
+}
+
+#apports-texte:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 4px;
+}
+
+#apports-texte:disabled {
+  opacity: 0.6;
+}
+
+#apports-message {
+  min-height: 22px;
+}
+
+.apports-titre {
+  margin-top: 30px;
+}
+
+.apports-contribution {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+nav {
+  flex-wrap: wrap;
+  gap: 0 20px;
+}
+
+@media (max-width: 560px) {
+  .apports-commandes {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .apports-commandes input {
+    width: 100%;
+  }
+}
