@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="description"
+    content="Un petit tour de roue pour une grande journée au bureau."
+  >
+
+  <title>La roue de la Planif</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="rituel.js" defer></script>
+</head>
+
+<body>
+
+  <!-- =================================================
+       EN-TÊTE ET NAVIGATION
+       ================================================= -->
+
+  <header>
+    <div class="brand">
+      <span class="logo" aria-hidden="true">✳</span>
+
+      La roue de la Planif
+
+      <span style="color: var(--orange)">.</span>
+    </div>
+
+    <nav aria-label="Navigation principale">
+      <button
+        type="button"
+        data-page="roue"
+        class="active"
+      >
+        La roue
+      </button>
+
+      <button
+        type="button"
+        data-page="defis"
+      >
+        Les défis
+      </button>
+
+      <button
+        type="button"
+        data-page="equipe"
+      >
+        Le bureau
+      </button>
+
+        <button
+        type="button"
+        data-page="rituel"
+      >
+        Rituel du bureau
+      </button>
+    </nav>
+
+    <select
+      id="profile"
+      class="profile"
+      aria-label="Choisir mon profil"
+    >
+      <option value="">Choisir mon prénom</option>
+    </select>
+  </header>
+
+  <main>
+
+    <!-- =================================================
+         PAGE : LA ROUE
+         ================================================= -->
+
+    <section id="roue" class="page">
+
+      <!-- Introduction -->
+
+      <div class="intro">
+        <div>
+          <div class="eyebrow">
+            Le hasard fait bien les collègues
+          </div>
+
+          <h1>Une journée. Un tour. Un défi.</h1>
+
+          <p>
+            Un peu moins de routine, un peu plus de bonne humeur.
+            À toi de jouer !
+          </p>
+        </div>
+
+        <div id="date" class="date"></div>
+      </div>
+
+      <div class="layout">
+
+        <!-- Roue et bouton de tirage -->
+
+        <div class="card wheelcard">
+          <div class="cardtop">
+            <strong>Le petit rituel du bureau</strong>
+
+            <span class="tag">✦ 1 défi par jour</span>
+          </div>
+
+          <div class="stage">
+            <div class="pointer" aria-hidden="true"></div>
+
+            <canvas
+              id="wheel"
+              width="720"
+              height="720"
+              role="img"
+              aria-label="Roue à six secteurs : missions, gages et mots interdits"
+            >
+              Roue des missions, petits gages et mots interdits.
+              Le résultat du tirage apparaît dans Ton défi du jour.
+            </canvas>
+
+            <div class="hub" aria-hidden="true">
+              PLANIF
+            </div>
+          </div>
+
+          <button
+            type="button"
+            id="spin"
+            class="primary"
+            disabled
+          >
+            Tourner la roue &nbsp; ↗
+          </button>
+
+          <p id="spinhelp" class="sub">
+            Choisis ton prénom en haut pour tenter ta chance.
+          </p>
+
+          <div class="legend">
+            <span>
+              <i
+                class="dot"
+                style="background: #ed9269"
+                aria-hidden="true"
+              ></i>
+              Mission du jour
+            </span>
+
+            <span>
+              <i
+                class="dot"
+                style="background: #b7acd6"
+                aria-hidden="true"
+              ></i>
+              Petit gage
+            </span>
+
+            <span>
+              <i
+                class="dot"
+                style="background: #e3c980"
+                aria-hidden="true"
+              ></i>
+              Mot interdit
+            </span>
+          </div>
+        </div>
+
+        <!-- Défi personnel et règles -->
+
+        <aside class="side">
+
+          <div class="card mission">
+            <div class="cardtop">
+              <span
+                class="eyebrow"
+                style="color: #8b74ad"
+              >
+                Ton défi du jour
+              </span>
+
+              <span aria-hidden="true">✧</span>
+            </div>
+
+            <div
+              id="mission"
+              class="empty"
+              aria-live="polite"
+            >
+              <div class="icon" aria-hidden="true">☕</div>
+
+              <h3>Le destin prend son café.</h3>
+
+              <p>
+                Choisis ton prénom, tourne la roue
+                et découvre ce qu'il te réserve.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Ici, on joue collectif.</h2>
+
+            <div class="rule">
+              <span aria-hidden="true">☺</span>
+
+              <div>
+                Des défis légers, à faire entre deux vraies missions.
+              </div>
+            </div>
+
+            <div class="rule">
+              <span aria-hidden="true">♡</span>
+
+              <div>
+                Aucune obligation : un joker permet de passer son tour.
+              </div>
+            </div>
+
+            <div class="rule">
+              <span aria-hidden="true">✦</span>
+
+              <div>
+                La seule compétition ? La bonne humeur.
+              </div>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+      <!-- Cartes de présentation -->
+
+      <div class="bottom">
+
+        <div class="card mini">
+          <div class="icon" aria-hidden="true">☀</div>
+
+          <div>
+            <strong>Le rituel du matin</strong>
+
+            <p>Un tirage, et la journée est lancée.</p>
+          </div>
+        </div>
+
+        <div class="card mini">
+          <div class="icon" aria-hidden="true">♧</div>
+
+          <div>
+            <strong>17 collègues, une équipe</strong>
+
+            <p>Tout le bureau dans l'aventure.</p>
+          </div>
+        </div>
+
+        <div class="card mini">
+          <div class="icon" aria-hidden="true">✌</div>
+
+          <div>
+            <strong>Zéro pression</strong>
+
+            <p>Un joker, aucun justificatif à fournir.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =================================================
+         PAGE : LES DÉFIS
+         ================================================= -->
+
+    <section id="defis" class="page hidden">
+      <div class="eyebrow">
+        Le menu des réjouissances
+      </div>
+
+      <h1>Du sérieux dans la fantaisie.</h1>
+
+      <p>
+        Des missions faisables, des gages gentils
+        et des mots qui vont te manquer.
+      </p>
+
+      <div id="challenges" class="grid"></div>
+    </section>
+
+    <!-- =================================================
+         PAGE : LE BUREAU
+         ================================================= -->
+
+    <section id="equipe" class="page hidden">
+      <div class="eyebrow">
+        La joyeuse équipe
+      </div>
+
+      <h1>Les aventures du bureau.</h1>
+
+      <p id="historylabel"></p>
+
+      <div id="history" class="card"></div>
+    </section>
+
+    <!-- =================================================
+         PAGE : RITUEL DU BUREAU
+         ================================================= -->
+
+    <section id="rituel" class="page hidden">
+      <div class="eyebrow">
+        Le planning des bonnes choses
+      </div>
+
+      <h1>On se retrouve autour de quoi ?</h1>
+
+      <p>
+        Petit déjeuner, apéro, hot-dog, panini…
+        Le hasard compose le menu du bureau.
+      </p>
+
+      <div class="card">
+        <h2>Le rendez-vous de l’équipe</h2>
+
+        <div class="rituel-commandes">
+          <label for="rituel-date">
+            Date du rendez-vous
+
+            <input
+              type="date"
+              id="rituel-date"
+            >
+          </label>
+
+          <button
+            type="button"
+            id="rituel-tirer"
+            class="primary"
+            disabled
+          >
+            Tirer le rituel ✦
+          </button>
+
+          <button
+            type="button"
+            id="rituel-actualiser"
+            class="outline"
+          >
+            Actualiser
+          </button>
+        </div>
+
+        <p id="rituel-info" class="sub" role="status"></p>
+
+        <div
+          id="rituel-resultat"
+          class="rituel-resultat"
+          aria-live="polite"
+        ></div>
+      </div>
+
+      <h2 class="rituel-sous-titre">
+        Dans le chapeau
+      </h2>
+
+      <p>
+        Les propositions actives de Google Sheets.
+        Le tirage évite de répéter le rituel des dates voisines.
+      </p>
+
+      <div
+        id="rituel-propositions"
+        class="grid"
+      ></div>
+
+      <h2 class="rituel-sous-titre">
+        Le carnet des rendez-vous
+      </h2>
+
+      <div
+        id="rituel-historique"
+        class="card"
+      ></div>
+    </section>
+
+
+    <!-- =================================================
+         PAGE : RÉGLAGES
+         ================================================= -->
+
+    <section id="config" class="page hidden">
+      <div class="eyebrow">
+        Les coulisses
+      </div>
+
+      <h1>Un bureau bien connecté.</h1>
+
+      <div class="card">
+        <h2>Google Sheets · planifact@gmail.com</h2>
+
+        <p id="syncstate"></p>
+
+        <div class="notice">
+          Le choix du prénom est une identification conviviale,
+          pas une authentification sécurisée.
+          Chaque personne peut sélectionner l'un des 17 profils.
+          La liste des prénoms ne protège pas l’accès au site.
+        </div>
+
+        <h3>Raccorder le tableau partagé</h3>
+
+        <ol>
+          <li>
+            Avec le compte <strong>planifact@gmail.com</strong>,
+            crée un Google Sheet vide.
+          </li>
+
+          <li>
+            Ouvre <strong>Extensions → Apps Script</strong>,
+            colle le script ci-dessous et exécute
+            <strong>initialiser</strong> une fois.
+          </li>
+
+          <li>
+            Déploie comme application Web :
+            exécuter en tant que toi, accès
+            <strong>Tout le monde</strong>.
+            Copie l'URL se terminant par <strong>/exec</strong>.
+          </li>
+
+          <li>
+            Colle l'URL ici pour la tester.
+            Pour toute l’équipe, renseigne cette URL dans
+            <strong>config.js</strong>, puis mets à jour
+            ce fichier sur ton hébergement.
+          </li>
+        </ol>
+
+        <p class="sub">
+          Le service déployé avec l’accès « Tout le monde »
+          peut être appelé sans connexion Google.
+          Une personne connaissant son adresse peut lire les tirages
+          et envoyer des demandes d’enregistrement.
+        </p>
+
+        <label for="endpoint">
+          Adresse de l'application Web Apps Script
+        </label>
+
+        <input
+          type="url"
+          id="endpoint"
+          placeholder="https://script.google.com/macros/s/…/exec"
+          autocomplete="off"
+          spellcheck="false"
+        >
+
+        <button
+          type="button"
+          id="connect"
+          class="primary"
+        >
+          Enregistrer et tester
+        </button>
+
+        <button
+          type="button"
+          id="local"
+          class="outline"
+        >
+          Revenir au mode local
+        </button>
+
+        <p id="connectionmsg" role="status"></p>
+
+        <details>
+          <summary>
+            Afficher le script Google Apps Script
+          </summary>
+
+          <pre id="script"></pre>
+
+          <button
+            type="button"
+            id="copy"
+            class="outline"
+          >
+            Copier le script
+          </button>
+        </details>
+
+        <p class="sub">
+          La synchronisation doit réussir avant qu'un tirage
+          soit confirmé comme enregistré.
+          Le mode local garde les données sur ce navigateur uniquement.
+        </p>
+      </div>
+    </section>
+
+    <!-- =================================================
+         PIED DE PAGE
+         ================================================= -->
+
+    <footer>
+      <span>
+        La roue de la Planif · Fait pour les pauses qui font du bien.
+      </span>
+
+      <span id="mode" role="status">
+        Connexion en cours…
+      </span>
+    </footer>
+
+  </main>
+
+  <!-- Notifications temporaires -->
+
+  <div
+    id="toast"
+    class="hidden"
+    role="status"
+  ></div>
+
+</body>
+</html>
