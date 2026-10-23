@@ -21,6 +21,7 @@
   <script src="config.js" defer></script>
   <script src="app.js" defer></script>
   <script src="rituel.js" defer></script>
+  <script src="commande-mine.js" defer></script>
 </head>
 
 <body>
@@ -59,6 +60,13 @@
         data-page="equipe"
       >
         Le bureau
+      </button>
+
+        <button
+        type="button"
+        data-page="commande-mine"
+      >
+        Commande Mine
       </button>
 
         <button
@@ -311,6 +319,96 @@
       <p id="historylabel"></p>
 
       <div id="history" class="card"></div>
+    </section>
+
+        <!-- =================================================
+         PAGE : COMMANDE MINE
+         ================================================= -->
+
+    <section id="commande-mine" class="page hidden">
+      <div class="eyebrow">
+        Le comptoir de la Planif
+      </div>
+
+      <h1>Qui prend quoi ?</h1>
+
+      <p>
+        Un clic par boisson, et personne n’oublie le Perrier.
+      </p>
+
+      <div class="card mine-resume">
+        <div>
+          <h2>La tournée en préparation</h2>
+
+          <p
+            id="mine-total"
+            class="mine-total"
+            role="status"
+          >
+            0 boisson
+          </p>
+        </div>
+
+        <div class="actionrow">
+          <button
+            type="button"
+            id="mine-copier"
+            class="primary"
+          >
+            Copier la commande
+          </button>
+
+          <button
+            type="button"
+            id="mine-whatsapp"
+            class="outline"
+          >
+            Partager sur WhatsApp
+          </button>
+
+          <button
+            type="button"
+            id="mine-annuler"
+            class="outline"
+            disabled
+          >
+            Annuler le dernier changement
+          </button>
+
+          <button
+            type="button"
+            id="mine-effacer"
+            class="outline"
+          >
+            Nouvelle commande
+          </button>
+        </div>
+      </div>
+
+      <p class="sub">
+        Commande enregistrée uniquement sur ce navigateur.
+        Elle n’est pas partagée entre les ordinateurs.
+      </p>
+
+      <p id="mine-message" role="status"></p>
+
+      <div id="mine-boissons" class="grid"></div>
+
+      <div class="card mine-recap">
+        <h2>Le bon de commande</h2>
+
+        <p class="sub">
+          Prêt à copier et à transmettre à la personne
+          qui passe la commande.
+        </p>
+
+        <textarea
+          id="mine-texte"
+          rows="5"
+          readonly
+          aria-label="Récapitulatif de la commande"
+        ></textarea>
+      </div>
     </section>
 
     <!-- =================================================

@@ -900,3 +900,109 @@ footer {
     padding: 14px 0;
   }
 }
+/* =====================================================
+   COMMANDE MINE
+   ===================================================== */
+
+.mine-resume {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.mine-resume h2 {
+  margin-bottom: 8px;
+}
+
+.mine-total {
+  margin: 0;
+
+  color: var(--orange);
+
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.mine-boisson {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.mine-boisson h3 {
+  margin: 0;
+}
+
+.mine-compteur {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mine-compteur button {
+  width: 46px;
+  height: 46px;
+  padding: 0;
+
+  font-size: 25px;
+}
+
+.mine-quantite {
+  min-width: 48px;
+
+  text-align: center;
+
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.mine-selectionnee {
+  background: #fff7ee;
+  border-color: #ef714470;
+}
+
+.mine-recap {
+  margin-top: 24px;
+}
+
+#mine-texte {
+  width: 100%;
+  min-height: 160px;
+  padding: 16px;
+
+  background: var(--paper);
+  color: var(--ink);
+
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  font: inherit;
+  line-height: 1.8;
+
+  resize: vertical;
+}
+
+#mine-texte:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 4px;
+}
+
+#mine-message {
+  min-height: 22px;
+}
+
+@media (max-width: 560px) {
+  .mine-resume .actionrow {
+    width: 100%;
+  }
+
+  .mine-resume .actionrow button {
+    flex: 1 1 100%;
+  }
+}
