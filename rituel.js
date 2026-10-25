@@ -17,6 +17,8 @@
   const elements = {
     date: document.querySelector("#rituel-date"),
     draw: document.querySelector("#rituel-tirer"),
+    choice: document.querySelector("#rituel-choix"),
+    validate: document.querySelector("#rituel-valider"),
     refresh: document.querySelector("#rituel-actualiser"),
     info: document.querySelector("#rituel-info"),
     result: document.querySelector("#rituel-resultat"),
@@ -171,6 +173,22 @@
       }
 
       options = result.propositions;
+
+      const previousChoice = elements.choice.value;
+
+      elements.choice.replaceChildren(
+        new Option("Choisir un rituel", "")
+      );
+
+      options.forEach((option) => {
+        elements.choice.add(
+          new Option(option.titre, option.titre)
+        );
+      });
+
+      if (options.some((option) => option.titre === previousChoice)) {
+        elements.choice.value = previousChoice;
+      }
       history = result.historique;
 
       loadedEndpoint = requestedEndpoint;
@@ -186,11 +204,15 @@
     }
   }
 
-  // ===================================================
-  // 5. TIRAGE
+    // ===================================================
+  // TIRAGE ALÉATOIRE OU CHOIX DIRECT
   // ===================================================
 
-  async function drawRitual() {
+  async function drawRitual(manual = false) {
+    const selectedTitle = manual
+      ? elements.choice.value
+      : "";
+
     if (
       loading ||
       !ready ||
@@ -199,9 +221,21 @@
       !user ||
       !elements.date.value ||
       elements.date.value < day() ||
-      selectedResult() ||
-      options.length < 2
+      selectedResult()
     ) {
+      return;
+    }
+
+    if (manual) {
+      if (!options.some((option) => option.titre === selectedTitle)) {
+        elements.info.textContent = "Choisis un rituel dans la liste.";
+        return;
+      }
+
+    } else if (options.length < 2) {
+      elements.info.textContent =
+        "Active au moins deux propositions pour le tirage aléatoire.";
+
       return;
     }
 
@@ -210,15 +244,27 @@
     const requestedEndpoint = endpoint;
 
     loading = true;
-    message = "Le bureau consulte son destin gastronomique…";
+
+    message = manual
+      ? "Enregistrement du rituel choisi…"
+      : "Le bureau consulte son destin gastronomique…";
 
     renderRitual();
 
     try {
-      const result = await request("rituel_tirer", {
+      const parameters = {
         date: requestedDate,
         name: requestedUser
-      });
+      };
+
+      if (manual) {
+        parameters.choix = selectedTitle;
+      }
+
+      const result = await request(
+        "rituel_tirer",
+        parameters
+      );
 
       if (endpoint !== requestedEndpoint) {
         ready = false;
@@ -233,18 +279,18 @@
       history = result.historique;
 
       message = result.dejaTire
-        ? "Un collègue avait déjà tiré cette date : " +
-          "voici le résultat partagé."
-        : "Le menu est choisi ! Le résultat est enregistré " +
-          "pour tout le bureau.";
+        ? "Cette date avait déjà un rituel : " +
+          "voici le résultat conservé."
+        : manual
+          ? "Le rituel choisi est enregistré pour tout le bureau."
+          : "Le menu est choisi ! Le résultat est enregistré " +
+            "pour tout le bureau.";
 
     } catch (error) {
-      // Une requête interrompue peut avoir été enregistrée.
-      // Exiger un rechargement avant une nouvelle tentative.
       ready = false;
 
       message =
-        "Tirage non confirmé : " + error.message +
+        "Enregistrement non confirmé : " + error.message +
         " Actualise avant de réessayer.";
 
     } finally {
@@ -267,6 +313,23 @@
 
     elements.date.disabled = loading;
     elements.refresh.disabled = loading;
+
+      const choiceAllowed =
+      available &&
+      !loading &&
+      Boolean(user) &&
+      Boolean(elements.date.value) &&
+      elements.date.value >= day() &&
+      !result &&
+      options.length > 0;
+
+    elements.choice.disabled = !choiceAllowed;
+
+    elements.validate.disabled =
+      !choiceAllowed ||
+      !options.some((option) =>
+        option.titre === elements.choice.value
+      );
 
     elements.draw.disabled =
       loading ||
@@ -301,10 +364,14 @@
       } else if (!user) {
         help = "Choisis ton prénom en haut de la page.";
 
+      } else if (!options.length) {
+        help =
+          "Active au moins une proposition dans Google Sheets.";
+
       } else if (options.length < 2) {
         help =
-          "Active au moins deux propositions différentes " +
-          "dans Google Sheets.";
+          "Tu peux valider le choix disponible. " +
+          "Le tirage aléatoire nécessite deux propositions.";
 
       } else {
         help =
@@ -422,7 +489,15 @@
     renderRitual();
   });
 
-  elements.draw.addEventListener("click", drawRitual);
+    elements.draw.addEventListener("click", () => {
+    drawRitual(false);
+  });
+
+  elements.validate.addEventListener("click", () => {
+    drawRitual(true);
+  });
+
+  elements.choice.addEventListener("change", renderRitual);
   elements.refresh.addEventListener("click", loadRitual);
 
   document
