@@ -9,8 +9,9 @@ const names = [
   "Yann",
   "Yoann",
   "Guillaume",
-  "Elodie",
   "Elise",
+  "Clement",
+  "Elodie",
   "Sylvie",
   "Audrey",
   "Bertrand",
@@ -26,49 +27,88 @@ const names = [
 ];
 
 // =====================================================
-// 2. DÉFIS
+// DÉFIS DE LA ROUE DE LA PLANIF
 //
 // Chaque défi contient :
 // [catégorie, titre, description]
+//
+// Pour ajouter un défi :
+// - reprendre la structure d'un bloc ;
+// - utiliser exactement l'une des trois catégories.
 // =====================================================
 
 const challenges = [
+
+  // ===================================================
+  // MISSIONS DU JOUR
+  // ===================================================
+
   [
     "Mission du jour",
     "Le compliment incognito",
     "Glisse un compliment sincère à un collègue. " +
-      "Discrétion niveau agent secret."
+      "Discrétion niveau agent secret : aucune cérémonie de remise de médaille."
   ],
   [
     "Mission du jour",
     "Le bulletin météo",
     "Annonce la météo du bureau en une phrase : " +
-      "« Éclaircies sur la planif, risque de café à 10 h. »"
+      "« Éclaircies sur la Planif, risque de café et fortes averses de réunions. »"
   ],
   [
     "Mission du jour",
     "La pause qui rassemble",
-    "Propose une pause de deux minutes à un collègue disponible. " +
-      "Le café reste facultatif."
+    "Propose une petite pause à un collègue disponible. " +
+      "L’objectif : refaire le monde avant que le planning ne s’en charge."
   ],
   [
     "Mission du jour",
     "Service après-sourire",
-    "Donne un petit coup de main à un collègue qui en a envie. " +
-      "Super-héros, mais sans la cape."
+    "Propose un coup de main à un collègue. " +
+      "La cape de super-héros est facultative, le café de remerciement aussi."
   ],
   [
     "Mission du jour",
-    "Le slogan du jour",
-    "Invente une devise pour la Planif et partage-la " +
-      "à la prochaine pause."
+    "La devise de la Planif",
+    "Invente une devise pour le bureau et partage-la à la pause. " +
+      "Exemple : « Prévoir l’imprévisible, surtout le lundi. »"
   ],
   [
     "Mission du jour",
-    "Détecteur de bonnes nouvelles",
-    "Trouve une petite bonne nouvelle et partage-la à un collègue. " +
-      "Même le retour du soleil compte."
+    "Le café attendra",
+    "Ce matin, ton premier café tu repousseras de 30 minutes. " +
+      "Le bureau observera avec émotion ce moment de bravoure."
   ],
+  [
+    "Mission du jour",
+    "La pause différée",
+    "Si tu prends une pause cigarette, repousse-la de 10 minutes. " +
+      "Sinon, décale simplement ta prochaine pause de 10 minutes."
+  ],
+  [
+    "Mission du jour",
+    "La journée diplomatique",
+    "Aujourd’hui, les insultes tu éviteras. " +
+      "En cas d’urgence, remplace-les par « sapristi » ou « flûte de planning »."
+  ],
+  [
+    "Mission du jour",
+    "L’objet mystérieux",
+    "Choisis un objet banal de ton bureau et invente-lui une fonction secrète. " +
+      "Le premier collègue qui la devine gagne le droit de sourire."
+  ],
+  [
+    "Mission du jour",
+    "La bonne nouvelle",
+    "Partage une petite bonne nouvelle avec un collègue. " +
+      "Le retour du soleil et une imprimante qui fonctionne sont recevables."
+  ],
+
+
+  // ===================================================
+  // PETITS GAGES
+  // ===================================================
+
   [
     "Petit gage",
     "Le grand discours",
@@ -78,42 +118,75 @@ const challenges = [
   [
     "Petit gage",
     "Expert en caféologie",
-    "Décris ta boisson comme un grand critique gastronomique. " +
-      "Une phrase suffit."
+    "Décris ta boisson comme un grand critique gastronomique : " +
+      "« Une attaque franche, une finale audacieuse, une tasse de 2026. »"
   ],
   [
     "Petit gage",
     "Le titre honorifique",
-    "Présente-toi une fois comme « Ministre des créneaux " +
-      "disponibles ». Seulement entre collègues joueurs."
+    "Présente-toi une fois comme « Ministre des créneaux disponibles », " +
+      "entre collègues joueurs. La passation de pouvoir reste facultative."
   ],
   [
     "Petit gage",
     "Conférence de presse",
-    "Raconte en vingt secondes comment tu as héroïquement " +
-      "retrouvé un objet banal."
+    "Raconte en vingt secondes comment tu as héroïquement retrouvé " +
+      "un objet banal. Les journalistes imaginaires peuvent poser des questions."
   ],
   [
     "Petit gage",
-    "Le documentaire",
-    "Commente le rangement de ton bureau comme un documentaire " +
-      "animalier. À la pause, naturellement."
+    "Le documentaire animalier",
+    "À la pause, commente le rangement de ton bureau : " +
+      "« Ici, le planificateur replace délicatement son agrafeuse. »"
   ],
   [
     "Petit gage",
     "Poète de la Planif",
     "Compose deux vers sur les joies du planning. " +
-      "Les rimes approximatives sont un patrimoine."
+      "Les rimes approximatives seront étudiées avec bienveillance."
   ],
+  [
+    "Petit gage",
+    "La minute du commandant",
+    "À la pause, annonce d’un air solennel : " +
+      "« Équipage, la mission café est déclarée ouverte. »"
+  ],
+  [
+    "Petit gage",
+    "L’hymne de l’agrafeuse",
+    "Trouve un slogan publicitaire pour un objet de ton bureau. " +
+      "Exemple : « Agrafeuse 3000 : elle rassemble ce que la Planif sépare. »"
+  ],
+  [
+    "Petit gage",
+    "La remise de décoration",
+    "Décerne une médaille imaginaire à un objet du bureau " +
+      "pour son courage face à une journée de travail."
+  ],
+  [
+    "Petit gage",
+    "Le ralenti héroïque",
+    "Pendant une pause, prends une gorgée de ta boisson au ralenti, " +
+      "comme si tu venais de sauver le planning de la semaine."
+  ],
+
+
+  // ===================================================
+  // MOTS INTERDITS
+  //
+  // À jouer entre collègues, hors échanges professionnels
+  // où les mots habituels sont nécessaires.
+  // ===================================================
+
   [
     "Mot interdit",
     "On oublie « normalement »",
-    "Pendant une heure, remplace « normalement » par " +
-      "« selon les astres ». Hors échanges professionnels formels !"
+    "Pendant une heure entre collègues, remplace « normalement » " +
+      "par « selon les astres »."
   ],
   [
     "Mot interdit",
-    "Le mot « urgent » prend sa pause",
+    "Urgence cosmique",
     "Pendant la prochaine pause, remplace « urgent » " +
       "par « priorité cosmique »."
   ],
@@ -125,22 +198,47 @@ const challenges = [
   ],
   [
     "Mot interdit",
-    "Le « planning » mystère",
-    "Pendant la prochaine pause, parle du planning sans prononcer " +
-      "ce mot. « La grande fresque temporelle » est accepté."
+    "Le planning mystère",
+    "Pendant la prochaine pause, parle du planning sans prononcer ce mot. " +
+      "« La grande fresque temporelle » est accepté."
   ],
   [
     "Mot interdit",
-    "On débranche « réunion »",
+    "Réunion interdite",
     "Pendant la prochaine pause, appelle les réunions " +
       "« rassemblements de cerveaux »."
   ],
   [
     "Mot interdit",
-    "Pause du « café »",
+    "Le café sous couverture",
     "Pendant la prochaine pause, appelle le café " +
       "« carburant officiel ». Le thé peut porter réclamation."
+  ],
+  [
+    "Mot interdit",
+    "Non au « problème »",
+    "Pendant la prochaine pause, remplace « problème » " +
+      "par « aventure administrative inattendue »."
+  ],
+  [
+    "Mot interdit",
+    "La pièce jointe disparue",
+    "Pendant la prochaine pause, remplace « pièce jointe » " +
+      "par « document invité à la fête »."
+  ],
+  [
+    "Mot interdit",
+    "Le chef mystère",
+    "Pendant la prochaine pause entre collègues joueurs, " +
+      "remplace « chef » par « grand maître du planning »."
+  ],
+  [
+    "Mot interdit",
+    "La pause prend du galon",
+    "Pendant une heure entre collègues, remplace « pause » " +
+      "par « opération de maintenance du personnel »."
   ]
+
 ];
 
 // =====================================================
